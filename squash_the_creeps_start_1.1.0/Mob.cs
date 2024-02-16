@@ -30,11 +30,15 @@ public partial class Mob : CharacterBody3D
 
 		// We calculate a random speed (integer).
 		int randomSpeed = GD.RandRange(MinSpeed, MaxSpeed);
+
 		// We calculate a forward velocity that represents the speed.
 		Velocity = Vector3.Forward * randomSpeed;
 		// We then rotate the velocity vector based on the mob's Y rotation
 		// in order to move in the direction the mob is looking.
 		Velocity = Velocity.Rotated(Vector3.Up, Rotation.Y);
+		
+
+		GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = randomSpeed / MinSpeed;
 	}
 
 	// We also specified this function name in PascalCase in the editor's connection window
